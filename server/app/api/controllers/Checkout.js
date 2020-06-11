@@ -13,12 +13,11 @@ module.exports = {
       payment_method_types: ["card"],
       receipt_email: "surekha19.mca@gmail.com",
       description: "payment intent",
-      // payment_method: "",
+      // payment_method: "Cards",
     });
     // } catch (e) {
     //   console.log("Error", e);
     // }
-    console.log("payment content", paymentIntent);
 
     res.send({
       clientSecret: paymentIntent.client_secret,

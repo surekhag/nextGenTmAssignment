@@ -20,6 +20,7 @@ function CheckoutPage() {
     const result = await stripe.confirmCardPayment(val, {
       payment_method: {
         card: elements.getElement(CardElement),
+        // payment_method: "Cards",
         billing_details: {
           name: "Jenny Rosen",
           email: "surekha19.mca@gmail.com",
@@ -106,7 +107,7 @@ function CheckoutPage() {
           />
         </div>
         <div class="inputValue">
-          <label>Card details</label>
+          <label>Card details :</label>
           <Card />
         </div>
         <div class="buttonStyles">
