@@ -1,11 +1,11 @@
 // import React from "react";
 import React, { useEffect } from "react";
 import ReactDOM from "react-dom";
-import { ToastProvider } from "react-toast-notifications";
+// import { ToastProvider } from "react-toast-notifications";
 import "./index.css";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
-import { Router, Route, Switch, Redirect } from "react-router-dom";
+// import { Router, Route, Switch, Redirect } from "react-router-dom";
 import { Provider } from "react-redux";
 
 import store from "../src/store/index";
@@ -13,15 +13,15 @@ const Index = (props) => {
   return (
     <Provider store={store}>
       {/* <UserContexProvider> */}
-      <Router>
-        <ToastProvider>
-          <Switch>
-            <Route exact path="/login" component={App} />
-            {/* <Route path="/admin" component={User} /> */}
-            <Redirect from="/" to="/login" />
-          </Switch>
-        </ToastProvider>
-      </Router>
+      {/* <Router> */}
+      {/* <ToastProvider> */}
+      <App />
+      {/* <Switch> */}
+      {/* <Route exact path="/" component={App} /> */}
+      {/* <Redirect from="/" to="/login" /> */}
+      {/* </Switch> */}
+      {/* </ToastProvider> */}
+      {/* </Router> */}
       {/* </UserContexProvider> */}
     </Provider>
   );
