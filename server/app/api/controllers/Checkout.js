@@ -1,21 +1,63 @@
-const stripe = require("stripe")(
-  "sk_test_51GsQPNDTOzzcNN3IsPKoXWp3Bg0uoTJSOjQTlaJn4usu8Hrri6AFL8ZIOTa5uGvgyeqR3rM7tubwKGzVgzLd6X6Z00voU5hGpx"
-);
+const key = require("../../../config/configData");
+const stripe = require("stripe")(key.key);
 module.exports = {
   create: async (req, res) => {
-    //   const { items } = req.body;
-    // Create a PaymentIntent with the order amount and currency
-    const paymentIntent = await stripe.paymentIntents.create({
-      // amount: calculateOrderAmount(items),
-      amount: 100,
-      currency: "usd",
+    const { amount, currency } = req.body;
+    console.log("Amount must be greater than 0 ", amount);
+    let paymentIntent;
+    // try {
+    paymentIntent = await stripe.paymentIntents.create({
+      // to do converstion of currency
+      amount: amount,
+      currency: currency,
       payment_method_types: ["card"],
       receipt_email: "surekha19.mca@gmail.com",
+      description: "payment intent",
+      // payment_method: "",
     });
-    console.log(paymentIntent);
+    // } catch (e) {
+    //   console.log("Error", e);
+    // }
+    console.log("payment content", paymentIntent);
+
     res.send({
-      // test: "test",
       clientSecret: paymentIntent.client_secret,
     });
+  },
+
+  // Not used because of Converting circular structure to JSON
+  confrimPayment: async (req, res) => {
+    console.log("inside confirm payment");
+    console.log(req.body);
+
+    await res.send({
+      // test: "test",
+      message: "Payment has been completed successfully",
+    });
+
+    // const { card, billing_details, client_secret } = req.body;
+    // console.log(card, billing_details, client_secret);
+    // console.log(req.body);
+    // Create a PaymentIntent with the order amount and currency
+    // const confirmPay = await stripe.confirmCardPayment(
+    //   { secret },
+    //   {
+    //     payment_method: {
+    //       card: card,
+    //       billing_details: billing_details,
+    //     },
+    //   }
+    // );
+
+    // if (confirmPay.error) {
+    //   console.log("error in payment confimation");
+    // } else {
+    //   if (result.paymentIntent.status === "succeeded") {
+    //     res.send({
+    //       // test: "test",
+    //       message: "Payment has been completed successfully",
+    //     });
+    //   }
+    // }
   },
 };

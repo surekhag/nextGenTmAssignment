@@ -1,3 +1,3 @@
 import { combineReducers } from "redux";
-import checkoutReducer from "./checkout";
+import checkoutReducer from "./checkoutReducer";
 export default combineReducers({ checkoutReducer });

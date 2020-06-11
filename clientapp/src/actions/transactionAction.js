@@ -1,5 +1,9 @@
-import { checkout } from "./actionTypes";
+import { checkout, secret } from "./actionTypes";
 
-export const checkoutAction = (data) => {
+export const checkoutSubmitData = (data) => {
   return { type: checkout, data };
+};
+
+export const setSecret = (data) => {
+  return { type: secret, data };
 };
