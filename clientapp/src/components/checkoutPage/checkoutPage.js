@@ -1,8 +1,8 @@
 import React from "react";
 // import "./App.css";
 // import "@stripe/stripe-js"
-// import { Elements } from "@stripe/react-stripe-js";
-// import { loadStripe } from "@stripe/stripe-js";
+import { Elements } from "@stripe/react-stripe-js";
+import { loadStripe } from "@stripe/stripe-js";
 // import cardForm from "../cardForm/cardForm";
 function CheckoutPage() {
   const handleSubmit = (e) => {
