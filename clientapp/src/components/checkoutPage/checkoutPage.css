@@ -17,6 +17,11 @@ label {
 .buttonStyles {
   text-align: center;
 }
+button {
+  font-weight: bold;
+  padding: 8px 10px;
+  border-radius: 7px;
+}
 h3 {
   text-align: center;
   margin: 50px;
