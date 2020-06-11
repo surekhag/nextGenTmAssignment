@@ -1,12 +1,5 @@
 import React, { useMemo } from "react";
-import {
-  useStripe,
-  useElements,
-  CardElement,
-  CardNumberElement,
-  CardExpiryElement,
-  CardCvcElement,
-} from "@stripe/react-stripe-js";
+import { CardElement } from "@stripe/react-stripe-js";
 
 const CARD_ELEMENT_STYLES = {
   style: {
@@ -27,19 +20,13 @@ const CARD_ELEMENT_STYLES = {
 };
 const cardStyle = {
   style: {
-    display: "flex",
+    // display: "flex",
   },
 };
 function Card() {
   return (
     <div className={cardStyle}>
-      <label>
-        Card details
-        <CardElement />
-        {/* <CardNumberElement />
-        <CardExpiryElement />
-        <CardCvcElement /> */}
-      </label>
+      <CardElement />
     </div>
   );
 }

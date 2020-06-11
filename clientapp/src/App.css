@@ -1,0 +1,10 @@
+.App {
+  display: flex;
+  border: 1 px solid grey;
+
+  justify-content: center;
+  align-self: center;
+  font-size: 14px;
+  padding: 30px 40px;
+  font-family: Georgia, Times, "Times New Roman", serif;
+}

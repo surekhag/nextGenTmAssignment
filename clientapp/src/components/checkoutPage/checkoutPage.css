@@ -1,2 +1,23 @@
 .checkoutForm {
+  /* width: 400px; */
+}
+.inputValue,
+.buttonStyles {
+  margin: 20px 0 20px 0;
+}
+.error {
+  padding-top: 10px;
+  color: red;
+}
+label {
+  font-weight: 700;
+  width: 40%;
+  /* margin-right: 10px; */
+}
+.buttonStyles {
+  text-align: center;
+}
+h3 {
+  text-align: center;
+  margin: 50px;
 }
