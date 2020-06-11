@@ -13,7 +13,7 @@ function CheckoutPage() {
 
   const dispatch = useDispatch();
   const elements = useElements();
-  const [amount, setAmount] = useState(0);
+  const [amount, setAmount] = useState();
   const [currency, setCurrency] = useState("usd");
   const [formError, setAmountError] = useState();
   async function paymentInfo(val) {
@@ -115,8 +115,9 @@ function CheckoutPage() {
             Submit
           </button>
         </div>
-
-        <label class="error">{formError}</label>
+        <div class="errorContainer">
+          <label class="error">{formError}</label>
+        </div>
       </form>
     </div>
   );

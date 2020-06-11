@@ -6,13 +6,20 @@
   margin: 20px 0 20px 0;
 }
 .error {
-  padding-top: 10px;
+  padding: 10px 10px 20px 10px;
   color: red;
+  text-align: center;
 }
 label {
   font-weight: 700;
   width: 40%;
   padding-right: 50px;
+}
+.errorContainer {
+  text-align: center;
+}
+form {
+  padding: 5px;
 }
 .buttonStyles {
   text-align: center;
