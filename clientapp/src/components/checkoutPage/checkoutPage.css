@@ -1,5 +1,7 @@
 .checkoutForm {
-  /* width: 400px; */
+  border: 1px solid grey;
+  padding: 0 20px;
+  border-radius: 24px;
 }
 .inputValue,
 .buttonStyles {
