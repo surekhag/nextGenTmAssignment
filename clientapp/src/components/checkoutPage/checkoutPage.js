@@ -32,6 +32,10 @@ function CheckoutPage() {
     }
   }, [fileUploadStatus]);
 
+  const tempAddressCountry = () => {
+    if (currency === "inr") return "IN";
+    else return "US";
+  };
   async function paymentInfo(val) {
     const result = await stripe.confirmCardPayment(val, {
       payment_method: {
@@ -43,7 +47,7 @@ function CheckoutPage() {
           phone: "4545454545",
           address: {
             city: "Kalyan",
-            country: "IN",
+            country: tempAddressCountry(),
             line1: "Address Kalyan",
             line2: "TESt",
             postal_code: "21212",
