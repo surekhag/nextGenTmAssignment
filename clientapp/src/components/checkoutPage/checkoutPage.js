@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useStripe, useElements, CardElement } from "@stripe/react-stripe-js";
 import "./checkoutPage.css";
 import { setSecret, submitCheckoutData } from "../../actions/transactionAction";
@@ -12,6 +12,8 @@ function CheckoutPage() {
   const fileUploadStatus = useSelector(
     (state) => state.checkoutReducer.file_upload_status
   );
+
+  const formReference = useRef(null);
   const stripe = useStripe();
 
   const dispatch = useDispatch();
@@ -23,6 +25,8 @@ function CheckoutPage() {
   useEffect(() => {
     if (fileUploadStatus == "success") {
       console.log(fileUploadStatus);
+      formReference.current.reset();
+      localStorage.removeItem("client_secret");
     } else if (fileUploadStatus == "error") {
       console.log(fileUploadStatus);
     }
@@ -68,6 +72,7 @@ function CheckoutPage() {
   }, [secretvalue]);
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     if (isNaN(amount) || amount <= 0) {
       setAmountError("Please enter valid amount");
       return;
@@ -83,7 +88,6 @@ function CheckoutPage() {
       type: "card",
       card: card,
     });
-
     if (error) {
       console.log("[error]", error);
     } else {
@@ -112,7 +116,7 @@ function CheckoutPage() {
   return (
     <div className="checkoutForm">
       <h3>Payment Gateway</h3>
-      <form onSubmit={handleSubmit}>
+      <form ref={formReference} onSubmit={handleSubmit}>
         <div class="inputValue">
           <label>Currency : </label>
           <select
