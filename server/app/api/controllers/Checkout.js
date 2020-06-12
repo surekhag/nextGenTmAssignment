@@ -43,31 +43,5 @@ module.exports = {
         });
       }
     });
-
-    // Not used because of Converting circular structure to JSON
-    // const { card, billing_details, client_secret } = req.body;
-    // console.log(card, billing_details, client_secret);
-    // console.log(req.body);
-    // Create a PaymentIntent with the order amount and currency
-    // const confirmPay = await stripe.confirmCardPayment(
-    //   { secret },
-    //   {
-    //     payment_method: {
-    //       card: card,
-    //       billing_details: billing_details,
-    //     },
-    //   }
-    // );
-
-    // if (confirmPay.error) {
-    //   console.log("error in payment confimation");
-    // } else {
-    //   if (result.paymentIntent.status === "succeeded") {
-    //     res.send({
-    //       // test: "test",
-    //       message: "Payment has been completed successfully",
-    //     });
-    //   }
-    // }
   },
 };

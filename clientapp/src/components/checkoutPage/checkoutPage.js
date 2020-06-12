@@ -27,6 +27,8 @@ function CheckoutPage() {
       console.log(fileUploadStatus);
       formReference.current.reset();
       localStorage.removeItem("client_secret");
+      setAmount();
+      setCurrency("usd");
     } else if (fileUploadStatus == "error") {
       console.log(fileUploadStatus);
     }
@@ -60,7 +62,6 @@ function CheckoutPage() {
       // To do Show error to your customer
       console.log(result.error.message);
     } else {
-      console.log("Payment success", result);
       dispatch(submitCheckoutData(result));
     }
   }

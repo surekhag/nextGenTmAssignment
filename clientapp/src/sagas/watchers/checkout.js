@@ -7,22 +7,7 @@ function* workerCheckoutSaga({ data }) {
   try {
     const clientSecretData = yield call(paymentIntent, { amount, currency });
     const client_secret = clientSecretData.data.clientSecret;
-    const paymentData = {
-      client_secret,
-      card,
-      billing_details,
-    };
-
-    //This is giving Converting circular structure to JSON so saved data in localstorage as stripr cant be used here .. must be react component
-    // try {
-    //   const paymentResponse = yield call(confirmPayment, paymentData);
-    //   console.log("paymentResponse ", paymentResponse);
-    // } catch (e) {
-    //   console.log("err", e);
-    // }
-
     localStorage.setItem("client_secret", client_secret);
-
     yield put(setSecret("Success"));
   } catch (e) {
     if (e.response.data && e.response.data.message) {
@@ -38,7 +23,6 @@ export function* watchCheckoutSaga() {
 function* workerCheckoutSuccessSaga({ data }) {
   try {
     const response = yield yield call(confirmPayment, data.paymentIntent);
-    console.log("file creation status", response.data.status);
     yield put(fileUploadStatus(response.data.status));
   } catch (e) {
     if (e.response.data && e.response.data.message) {
