@@ -25,6 +25,14 @@ function CheckoutPage() {
           name: "Jenny Rosen",
           email: "surekha19.mca@gmail.com",
           phone: "4545454545",
+          address: {
+            city: "Kalyan",
+            country: "IN",
+            line1: "Address Kalyan",
+            line2: "TESt",
+            postal_code: "21212",
+            state: "Maharashtra",
+          },
         },
         // ship: "sh"
       },
@@ -78,6 +86,14 @@ function CheckoutPage() {
       card: card,
       billing_details: {
         name: "Jenny Rosen",
+        // address: {
+        //   city: "Kalyan",
+        //   country: "India",
+        //   line1: "Address Kalyan",
+        //   line2: "TESt",
+        //   postal_code: "21212",
+        //   state: "Maharashtra",
+        // },
       },
     };
     dispatch(checkoutSubmitData(data));
