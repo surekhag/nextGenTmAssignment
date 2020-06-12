@@ -34,14 +34,13 @@ function CheckoutPage() {
             state: "Maharashtra",
           },
         },
-        // ship: "sh"
       },
     });
     if (result.error) {
       // To do Show error to your customer
       console.log(result.error.message);
     } else {
-      console.log("Payment success");
+      console.log("Payment success", result);
     }
   }
 
