@@ -9,6 +9,9 @@ import { useSelector, useDispatch } from "react-redux";
 import Card from "../cardForm/cardForm";
 function CheckoutPage() {
   const secretvalue = useSelector((state) => state.checkoutReducer.secretVal);
+  const fileUploadStatus = useSelector(
+    (state) => state.checkoutReducer.file_upload_status
+  );
   const stripe = useStripe();
 
   const dispatch = useDispatch();
@@ -16,6 +19,14 @@ function CheckoutPage() {
   const [amount, setAmount] = useState();
   const [currency, setCurrency] = useState("usd");
   const [formError, setAmountError] = useState();
+
+  useEffect(() => {
+    if (fileUploadStatus == "success") {
+      console.log(fileUploadStatus);
+    } else if (fileUploadStatus == "error") {
+      console.log(fileUploadStatus);
+    }
+  }, [fileUploadStatus]);
 
   async function paymentInfo(val) {
     const result = await stripe.confirmCardPayment(val, {
@@ -87,14 +98,6 @@ function CheckoutPage() {
       card: card,
       billing_details: {
         name: "Jenny Rosen",
-        // address: {
-        //   city: "Kalyan",
-        //   country: "India",
-        //   line1: "Address Kalyan",
-        //   line2: "TESt",
-        //   postal_code: "21212",
-        //   state: "Maharashtra",
-        // },
       },
     };
     dispatch(checkoutSubmitData(data));

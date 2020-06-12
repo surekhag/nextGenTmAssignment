@@ -10,6 +10,5 @@ export function paymentIntent(data) {
 }
 
 export function confirmPayment(data) {
-  console.log("inside api", data);
   return axios.post(confirmPaymentUrl, data);
 }

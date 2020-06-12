@@ -1,9 +1,9 @@
 const key = require("../../../config/configData");
 const stripe = require("stripe")(key.key);
+const files = require("fs");
 module.exports = {
   create: async (req, res) => {
     const { amount, currency } = req.body;
-    console.log("Amount must be greater than 0 ", amount);
     let paymentIntent;
     // try {
     paymentIntent = await stripe.paymentIntents.create({
@@ -13,7 +13,6 @@ module.exports = {
       payment_method_types: ["card"],
       receipt_email: "surekha19.mca@gmail.com",
       description: "payment intent",
-      // payment_method: "Cards",
     });
     // } catch (e) {
     //   console.log("Error", e);
@@ -24,16 +23,28 @@ module.exports = {
     });
   },
 
-  // Not used because of Converting circular structure to JSON
   confrimPayment: async (req, res) => {
-    console.log("inside confirm payment");
-    console.log(req.body);
+    let status;
+    const filename = `./Files/${req.body.id}.txt`;
 
-    await res.send({
-      // test: "test",
-      message: "Payment has been completed successfully",
+    //Note : Path can be customized.. for now i have saved contents in folder : Files
+    await files.appendFile(filename, JSON.stringify(req.body), function (err) {
+      if (err) throw err;
+      status = true;
+      if (status) {
+        res.send({
+          status: "success",
+          message: "Payment information has been saved successfully",
+        });
+      } else {
+        res.send({
+          status: "error",
+          message: "There was error in saving details!",
+        });
+      }
     });
 
+    // Not used because of Converting circular structure to JSON
     // const { card, billing_details, client_secret } = req.body;
     // console.log(card, billing_details, client_secret);
     // console.log(req.body);

@@ -1,6 +1,6 @@
 import { put, takeLatest, call } from "redux-saga/effects";
 import { checkout, checkout_success } from "../../actions/actionTypes";
-import { setSecret } from "../../actions/transactionAction";
+import { setSecret, fileUploadStatus } from "../../actions/transactionAction";
 import { paymentIntent, confirmPayment } from "../../apis/checkoutApis";
 function* workerCheckoutSaga({ data }) {
   const { amount, currency, card, billing_details } = data;
@@ -38,8 +38,8 @@ export function* watchCheckoutSaga() {
 function* workerCheckoutSuccessSaga({ data }) {
   try {
     const response = yield yield call(confirmPayment, data.paymentIntent);
-    console.log("file creation status", response);
-    // yield put(setSecret("Success"));
+    console.log("file creation status", response.data.status);
+    yield put(fileUploadStatus(response.data.status));
   } catch (e) {
     if (e.response.data && e.response.data.message) {
       console.log(e.response.data.message);
