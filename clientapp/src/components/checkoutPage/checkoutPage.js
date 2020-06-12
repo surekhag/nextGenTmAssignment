@@ -42,9 +42,8 @@ function CheckoutPage() {
     const result = await stripe.confirmCardPayment(val, {
       payment_method: {
         card: elements.getElement(CardElement),
-        // payment_method: "Cards",
         billing_details: {
-          name: "Jenny Rosen",
+          name: "Surekha gadkari",
           email: "surekha19.mca@gmail.com",
           phone: "4545454545",
           address: {
@@ -106,7 +105,7 @@ function CheckoutPage() {
       shipping: "Ship test",
       card: card,
       billing_details: {
-        name: "Jenny Rosen",
+        name: "Surekha Gadkari",
       },
     };
     dispatch(checkoutSubmitData(data));
