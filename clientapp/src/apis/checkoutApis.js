@@ -9,8 +9,7 @@ export function paymentIntent(data) {
   return axios.post(paymentIntentUrl, data);
 }
 
-export function confirmPayment(paymentData) {
-  const { client_secret, card, billing_details } = paymentData;
-  return axios.post(confirmPaymentUrl, paymentData);
-  //This is giving Converting circular structure to JSON err
+export function confirmPayment(data) {
+  console.log("inside api", data);
+  return axios.post(confirmPaymentUrl, data);
 }

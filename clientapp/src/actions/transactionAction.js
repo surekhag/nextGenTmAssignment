@@ -1,4 +1,4 @@
-import { checkout, secret } from "./actionTypes";
+import { checkout, secret, checkout_success } from "./actionTypes";
 
 export const checkoutSubmitData = (data) => {
   return { type: checkout, data };
@@ -6,4 +6,8 @@ export const checkoutSubmitData = (data) => {
 
 export const setSecret = (data) => {
   return { type: secret, data };
+};
+
+export const submitCheckoutData = (data) => {
+  return { type: checkout_success, data };
 };

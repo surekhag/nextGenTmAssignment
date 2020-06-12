@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useStripe, useElements, CardElement } from "@stripe/react-stripe-js";
 import "./checkoutPage.css";
-import { setSecret } from "../../actions/transactionAction";
+import { setSecret, submitCheckoutData } from "../../actions/transactionAction";
 
 import { checkoutSubmitData } from "../../actions/transactionAction";
 import { useSelector, useDispatch } from "react-redux";
@@ -16,6 +16,7 @@ function CheckoutPage() {
   const [amount, setAmount] = useState();
   const [currency, setCurrency] = useState("usd");
   const [formError, setAmountError] = useState();
+
   async function paymentInfo(val) {
     const result = await stripe.confirmCardPayment(val, {
       payment_method: {
@@ -41,6 +42,7 @@ function CheckoutPage() {
       console.log(result.error.message);
     } else {
       console.log("Payment success", result);
+      dispatch(submitCheckoutData(result));
     }
   }
 
