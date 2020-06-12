@@ -46,7 +46,7 @@ function CheckoutPage() {
       dispatch(setSecret(null));
     }
   }, [secretvalue]);
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (isNaN(amount) || amount <= 0) {
       setAmountError("Please enter valid amount");
@@ -59,6 +59,17 @@ function CheckoutPage() {
     }
 
     const card = elements.getElement(CardElement);
+    const { error, paymentMethod } = await stripe.createPaymentMethod({
+      type: "card",
+      card: card,
+    });
+
+    if (error) {
+      console.log("[error]", error);
+    } else {
+      console.log("[PaymentMethod]", paymentMethod);
+    }
+
     const data = {
       amount,
       currency,
